@@ -52,7 +52,8 @@ router.post('/login', async (req, res, next) => {
 
     //get the token 
     const token = await user.generateToken();
-    res.json({ user, token })
+    const email = user.email;
+    res.json({ email, token })
 });
 
 
