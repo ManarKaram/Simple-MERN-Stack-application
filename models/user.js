@@ -36,25 +36,7 @@ const UserSchema = new mongoose.Schema({
     }
 })
 
-
-// await sign({ userId: "13456" },
-//     'MySecretKey',
-//     { expiresIn: '10m' });
-// .then((token) => {
-
-// })
-// .catch(err => {
-//     console.error(err)
-// })
-// await verify(
-//     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMzQ1NiIsIm5hbWUiOiJKb2huIERvZSIsImlhdCI6MTUxNjIzOTAyMn0.-yZEVjwKj5-Gi4pyOuFpN0pXhfQjkVn3eFod9ndxTXo",
-//     'MySecret')
-//.then(data => {
-//     console.log(data)
-// }).catch(err => {
-//     console.error(err)
-// })
-UserSchema.methods.generateToken = function (expiresIn = '30m') {
+UserSchema.methods.generateToken = function (expiresIn = '365d') {
     const userInstace = this;
     return sign({ userId: userInstace.id }, process.env.JWT_SECRET, { expiresIn })
 }
